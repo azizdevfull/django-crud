@@ -13,7 +13,7 @@
 
         {% for person in people %}
             <li>
-            {{ person.id }}    {{ person.name}}
+            {{ person.id }}    {{ person.name}} <a href="{% url 'edit' person.id %}">Edit</a>
             </li>        
         {% endfor %}
         

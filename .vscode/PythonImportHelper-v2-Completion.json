@@ -137,6 +137,14 @@
         "documentation": {}
     },
     {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "sys",
         "kind": 6,
         "isExtraImport": true,
@@ -357,7 +365,7 @@
         "kind": 5,
         "importPath": "core.urls",
         "description": "core.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', home),\n    path('create/',create, name=\"create\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('', home),\n    path('create/',create, name=\"create\"),\n    path('edit/<int:id>', edit, name=\"edit\"),\n    path('update/<int:id>', update, name=\"update\"),\n]",
         "detail": "core.urls",
         "documentation": {}
     },
@@ -366,7 +374,7 @@
         "kind": 2,
         "importPath": "core.views",
         "description": "core.views",
-        "peekOfCode": "def home(request):\n    people = Person.objects.all()\n    return render(request, 'index.html', {\"people\": people})\ndef create(request):\n    vname = request.POST.get('name')\n    Person.objects.create(name=vname)\n    people = Person.objects.all()\n    return render(request, 'index.html', {\"people\": people})",
+        "peekOfCode": "def home(request):\n    people = Person.objects.all()\n    return render(request, 'index.html', {\"people\": people})\ndef create(request):\n    vname = request.POST.get('name')\n    Person.objects.create(name=vname)\n    people = Person.objects.all()\n    return render(request, 'index.html', {\"people\": people})\ndef edit(request, id):\n    person = Person.objects.get(id=id)",
         "detail": "core.views",
         "documentation": {}
     },
@@ -375,7 +383,25 @@
         "kind": 2,
         "importPath": "core.views",
         "description": "core.views",
-        "peekOfCode": "def create(request):\n    vname = request.POST.get('name')\n    Person.objects.create(name=vname)\n    people = Person.objects.all()\n    return render(request, 'index.html', {\"people\": people})",
+        "peekOfCode": "def create(request):\n    vname = request.POST.get('name')\n    Person.objects.create(name=vname)\n    people = Person.objects.all()\n    return render(request, 'index.html', {\"people\": people})\ndef edit(request, id):\n    person = Person.objects.get(id=id)\n    return render(request, 'update.html', {\"person\": person})\ndef update(request, id):\n    vname = request.POST.get('name')",
+        "detail": "core.views",
+        "documentation": {}
+    },
+    {
+        "label": "edit",
+        "kind": 2,
+        "importPath": "core.views",
+        "description": "core.views",
+        "peekOfCode": "def edit(request, id):\n    person = Person.objects.get(id=id)\n    return render(request, 'update.html', {\"person\": person})\ndef update(request, id):\n    vname = request.POST.get('name')\n    person = Person.objects.get(id=id)\n    person.name = vname\n    person.save()\n    return redirect(home)",
+        "detail": "core.views",
+        "documentation": {}
+    },
+    {
+        "label": "update",
+        "kind": 2,
+        "importPath": "core.views",
+        "description": "core.views",
+        "peekOfCode": "def update(request, id):\n    vname = request.POST.get('name')\n    person = Person.objects.get(id=id)\n    person.name = vname\n    person.save()\n    return redirect(home)",
         "detail": "core.views",
         "documentation": {}
     },
