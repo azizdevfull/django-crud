@@ -12,9 +12,11 @@
     <ul>
 
         {% for person in people %}
-            <li>
-            {{ person.id }}    {{ person.name}} <a href="{% url 'edit' person.id %}">Edit</a>
-            </li>        
+        <li>
+            {{ person.id }}    {{ person.name}} 
+            <a href="{% url 'edit' person.id %}">Edit</a>
+            <a href="{% url 'delete' person.id %}">Delete</a>    
+        </li>        
         {% endfor %}
         
     </ul>

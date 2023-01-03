@@ -365,7 +365,7 @@
         "kind": 5,
         "importPath": "core.urls",
         "description": "core.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', home),\n    path('create/',create, name=\"create\"),\n    path('edit/<int:id>', edit, name=\"edit\"),\n    path('update/<int:id>', update, name=\"update\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('', home),\n    path('create/',create, name=\"create\"),\n    path('edit/<int:id>', edit, name=\"edit\"),\n    path('update/<int:id>', update, name=\"update\"),\n    path('delete/<int:id>', delete, name=\"delete\"),\n]",
         "detail": "core.urls",
         "documentation": {}
     },
@@ -392,7 +392,7 @@
         "kind": 2,
         "importPath": "core.views",
         "description": "core.views",
-        "peekOfCode": "def edit(request, id):\n    person = Person.objects.get(id=id)\n    return render(request, 'update.html', {\"person\": person})\ndef update(request, id):\n    vname = request.POST.get('name')\n    person = Person.objects.get(id=id)\n    person.name = vname\n    person.save()\n    return redirect(home)",
+        "peekOfCode": "def edit(request, id):\n    person = Person.objects.get(id=id)\n    return render(request, 'update.html', {\"person\": person})\ndef update(request, id):\n    vname = request.POST.get('name')\n    person = Person.objects.get(id=id)\n    person.name = vname\n    person.save()\n    return redirect(home)\ndef delete(request, id):",
         "detail": "core.views",
         "documentation": {}
     },
@@ -401,7 +401,16 @@
         "kind": 2,
         "importPath": "core.views",
         "description": "core.views",
-        "peekOfCode": "def update(request, id):\n    vname = request.POST.get('name')\n    person = Person.objects.get(id=id)\n    person.name = vname\n    person.save()\n    return redirect(home)",
+        "peekOfCode": "def update(request, id):\n    vname = request.POST.get('name')\n    person = Person.objects.get(id=id)\n    person.name = vname\n    person.save()\n    return redirect(home)\ndef delete(request, id):\n    person = Person.objects.get(id=id)\n    person.delete()\n    return redirect(home)",
+        "detail": "core.views",
+        "documentation": {}
+    },
+    {
+        "label": "delete",
+        "kind": 2,
+        "importPath": "core.views",
+        "description": "core.views",
+        "peekOfCode": "def delete(request, id):\n    person = Person.objects.get(id=id)\n    person.delete()\n    return redirect(home)",
         "detail": "core.views",
         "documentation": {}
     },
