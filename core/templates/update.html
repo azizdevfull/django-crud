@@ -13,7 +13,7 @@
 
     <form action="{% url 'update' person.id %}" method="POST">
         {% csrf_token %}
-        <input type="text" name="name" value="{{ person.name }}">
+        <input type="text" name="name" value="{{ person.name }}" required>
         <button type="submit">Update</button>
     </form>
 </body>
